@@ -4,14 +4,14 @@ import x from '../../assets/img/icons/x.svg'
 import facebook from '../../assets/img/icons/facebook.svg'
 import github from '../../assets/img/icons/github.svg'
 import { NavLink } from 'react-router-dom'
-export default function Footer () {
+export default function Footer() {
   return (
     <section className='flex flex-col p-6 md:p-30 pb-10 min-h-max md:min-h-120 mt-20 md:mt-30 bg-black text-white'>
       <header className='flex flex-col md:flex-row w-full items-start md:items-center justify-between gap-10'>
         <div className='flex flex-col md:flex-row gap-6 w-full md:w-[80%]'>
           <Logo />
           <p className='text-sm md:text-base opacity-80 leading-relaxed'>
-            Grace Community Church is more than just a building—we're a family.
+            Grace Episcopal Church is more than just a building—we're a family.
             For over two decades, we've been a place where faith meets real
             life, where questions are welcomed, and where everyone belongs
             regardless of where they are on their spiritual journey. We believe

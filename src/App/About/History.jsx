@@ -8,19 +8,24 @@ export default function History() {
           We are For God. For people. For the city. For the world.
         </h3>
         <p className='text-left md:text-right font-medium px-4 md:px-20 tracking-wider leading-loose text-sm mt-6 '>
-          Passion City Church began with a stirring in the hearts of Louie and
-          Shelley Giglio for the local church. Born out of the Passion Movement
-          a decades-old movement among the collegiate generation, they sought to
-          plant a local community of faith impacted and informed by the DNA of
-          Passion. With a small team of people, that vision took flight in 2008,
-          as small gatherings began in homes throughout Atlanta. The desire was
-          to foster a family of believers connected by a common faith, on
-          mission in the city and the world to amplify the name of Jesus. And
-          that's exactly what happened. Our first gathering was held on February
-          15, 2009, in Atlanta at The Tabernacle. From there, God faithfully
-          provided, as our little tribe met at various locations all over the
-          city of Atlanta until we landed in our first permanent gathering site
-          at 515 Garson Drive.
+          Grace Episcopal Church began as a small mission group with a profound
+          vision: to establish a community dedicated to bringing the inclusive,
+          transformative love of Christ to our city through the beauty of
+          liturgy and selfless service. Rooted in the rich, historic tradition
+          of the Anglican communion, our community has grown into a vibrant
+          family of faith, deeply informed by a commitment to social justice,
+          spiritual depth, and the shared wisdom found in the Book of Common
+          Prayer. Since our founding, we have sought to foster a sanctuary where
+          all are welcome—a space to wrestle with faith, find peace in the
+          sacraments, and experience the real power of God's grace in everyday
+          life. Our journey has been one of consistent faithfulness and
+          community impact, evolving from humble gatherings in local homes to
+          the welcoming home we share today. Through every season, our focus
+          has remained unwavering: to be a pillar of hope, a voice for the
+          marginalized, and a beacon of Christ's love in the very heart of our
+          growing city. We don't just exist for ourselves; we exist to see our
+          neighbors flourish and our world restored through radical hospitality
+          and active service.
         </p>
       </section>
 

@@ -6,6 +6,7 @@ const Aboutpage = lazy(() => import('./Pages/Aboutpage'))
 const Versespage = lazy(() => import('./Pages/Versespage'))
 const Artpage = lazy(() => import('./Pages/Artpage'))
 const Homepage = lazy(() => import('./Pages/Homepage'))
+const Contactpage = lazy(() => import('./Pages/Contactpage'))
 import { NavigationProvider } from './App/context/navigation'
 import Loader from './components/Loader'
 
@@ -26,6 +27,7 @@ function App () {
               <Route path='/verses' element={<Versespage />} />
               <Route path='/about' element={<Aboutpage />} />
               <Route path='/arts' element={<Artpage />} />
+              <Route path='/contact' element={<Contactpage />} />
             </Routes>
           </Suspense>
         </NavigationProvider>

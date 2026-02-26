@@ -8,14 +8,22 @@ export default function Belief() {
 
       <section className='flex flex-col gap-6 md:gap-10 h-full w-full justify-center items-center py-10 md:py-0'>
         <h2 className='text-sm md:text-md font-light font-mono'>
-          Our Theological Truths
+          Our Episcopal Foundation
         </h2>
 
         <p className='text-4xl md:text-7xl font-bold'>What We Believe</p>
         <p className='px-4 md:px-10 text-center text-sm md:text-base'>
-          We live in shifting times but are rooted in eternal truths, the
-          teachings of Holy Scripture. Here at Passion City Church we are guided
-          by certain foundational beliefs and shaping values.
+          We are guided by the "three-legged stool" of Scripture, Tradition,
+          and Reason—three interdependent sources of authority that allow us to
+          journey together in faith while honoring the intellect and the wisdom
+          of the ages. We find our primary unity not in a list of strict
+          dogmas, but in the historic Creeds (the Apostles' and the Nicene) and
+          the liturgical life we share through the Book of Common Prayer. We
+          center our life on the Sacraments, particularly the Holy Eucharist,
+          where we experience the real presence of Christ and are nurtured for
+          our mission in the world. Our faith is one that seeks understanding,
+          embracing the mystery of God while staying committed to the work of
+          justice, compassion, and reconciliation in our community and beyond.
         </p>
 
         <button className='rounded-4xl cursor-pointer text-white font-semibold bg-[#8f3337] p-3 md:p-4 text-sm md:text-base'>
