@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { gsap, SplitText } from '../../libs/gsap'
 import { CSSPlugin } from 'gsap/CSSPlugin'
 
@@ -6,6 +6,78 @@ gsap.registerPlugin(CSSPlugin)
 export default function VerseAccordion () {
   const boxRefs = useRef([])
   const splitInstances = useRef({})
+  const isMobile = window.innerWidth <= 500
+  const [bibleVerse, setBibleVerse] = useState(bibleThemes)
+
+  function closeVerses () {
+    if (!isMobile) {
+      return
+    }
+    const originalHeight = 180
+
+    const closedOnes = bibleVerse
+      .filter(item => item.isOpened === false)
+      .map(item => document.getElementById(`verse-${item.id}`))
+
+    gsap.killTweensOf(closedOnes)
+
+    gsap.to(closedOnes, {
+      height: originalHeight,
+      duration: 0.3,
+      ease: 'none'
+    })
+  }
+
+  function openVerse (id, e, index) {
+    if (!isMobile) {
+      return
+    }
+
+    setBibleVerse(prev =>
+      prev.map(item =>
+        item.id === id
+          ? { ...item, isOpened: true }
+          : { ...item, isOpened: false }
+      )
+    )
+
+    const box = e.currentTarget
+    const instances = splitInstances.current[`box-${index}`]
+
+    gsap.killTweensOf(box)
+
+    gsap.to(box, {
+      height: 380,
+      duration: 0.3,
+      ease: 'none'
+    })
+
+    if (instances?.summary) {
+      gsap.set(instances.summary.chars, {
+        opacity: 0,
+        x: 50
+      })
+
+      gsap.to(instances.summary.chars, {
+        x: 0,
+        opacity: 1,
+        stagger: {
+          amount: 0.8,
+          from: 'edges'
+        },
+        delay: 0.5,
+        duration: 0.8,
+        ease: 'back.out(1.2)'
+      })
+    }
+  }
+
+  useEffect(() => {
+    if (!isMobile) {
+      return
+    }
+    closeVerses()
+  }, [bibleVerse])
 
   useEffect(() => {
     boxRefs.current.forEach((box, index) => {
@@ -80,8 +152,8 @@ export default function VerseAccordion () {
 
     gsap.to(box, {
       width: 5000,
-      duration: 0.8,
-      ease: 'power2.inOut'
+      duration: 0.7,
+      ease: 'bounce.in'
     })
 
     if (instances?.summary) {
@@ -112,7 +184,7 @@ export default function VerseAccordion () {
 
     gsap.to(box, {
       width: 240,
-      duration: 0.5,
+      duration: 0.8,
       ease: 'power2.inOut'
     })
 
@@ -133,32 +205,69 @@ export default function VerseAccordion () {
   return (
     <section className='min-h-max md:h-130 overflow-x-hidden md:overflow-hidden px-4 md:px-10 p-6 md:p-10 w-full'>
       <section className='flex flex-col md:flex-row h-full gap-4 md:gap-3'>
-        {bibleThemes.map((item, index) => (
+        {bibleVerse.map((item, index) => (
           <div
             key={item.id}
             ref={el => (boxRefs.current[index] = el)}
+            onClick={e => {
+              openVerse(item.id, e, index)
+            }}
             onMouseEnter={e =>
               window.innerWidth > 768 && handleMouseEnter(e, index)
             }
             onMouseLeave={e =>
               window.innerWidth > 768 && handleMouseLeave(e, index)
             }
-            className='h-64 md:h-full w-full md:min-w-60 md:grow transition-all duration-300 ease-in-out rounded-3xl
+            id={`verse-${item.id}`}
+            className={`h-34 md:h-full w-full md:min-w-60 md:grow transition-all duration-300 ease-in-out rounded-3xl
               text-white border group bg-black md:hover:bg-white md:hover:border-black
               will-change-transform transform-gpu cursor-pointer md:cursor-crosshair [font-kerning:none] [text-rendering:optimizeSpeed]
-              overflow-hidden relative '
+              overflow-hidden relative `}
           >
-            <div className='h-full md:group-hover:hidden flex w-full justify-center items-center p-6'>
+            <div className='h-full max-sm:hidden md:group-hover:hidden flex w-full justify-center items-center p-6'>
               <div className='md:rotate-270 text-lg md:text-xl font-light font-mono whitespace-nowrap text-white'>
                 {item.theme}
               </div>
             </div>
 
-            {/* Expanded View (Hover on Desktop, or just show content/different interaction on mobile if needed) */}
-            {/* For now keeping the group-hover logic but making it more accessible */}
+            {/* mbile version  */}
+            {item.isOpened ? (
+              <div className='w-full bg-white border  sm:hidden h-full text-black p-6 pb-0 flex-col overflow-y-auto md:overflow-hidden'>
+                <div className='flex flex-col gap-3 flex-1'>
+                  <div className='flex flex-col gap-1'>
+                    <p className='text-base md:text-lg font-semibold font-mono text-[#8f3337]'>
+                      {item.verses[0].reference}
+                    </p>
+                    <p className='reference-text text-sm md:text-md font-medium text-gray-700'>
+                      "{item.verses[0].text}"
+                    </p>
+                  </div>
+
+                  <div className='flex flex-col gap-1'>
+                    <p className='text-base md:text-lg font-semibold font-mono text-[#8f3337]'>
+                      {item.verses[1].reference}
+                    </p>
+                    <p className='reference-text text-sm md:text-md font-medium text-gray-700'>
+                      "{item.verses[1].text}"
+                    </p>
+                  </div>
+                </div>
+
+                <div className='summary mt-auto p-4 text-xs md:text-sm text-center font-medium bg-gray-50 rounded-t-2xl border-t-2 border-[#8f3337]'>
+                  {item.explanation}
+                </div>
+              </div>
+            ) : (
+              <div className='h-full sm:hidden md:group-hover:hidden flex w-full justify-center items-center p-6'>
+                <div className='md:rotate-270 text-lg md:text-xl font-light font-mono whitespace-nowrap text-white'>
+                  {item.theme}
+                </div>
+              </div>
+            )}
+
+            {/* desktop version  */}
             <div className='w-full hidden md:group-hover:flex h-full text-black p-6 pb-0 flex-col overflow-y-auto md:overflow-hidden'>
               <div className='flex flex-col gap-3 flex-1'>
-                {/* Verse 1 */}
                 <div className='flex flex-col gap-1'>
                   <p className='text-base md:text-lg font-semibold font-mono text-[#8f3337]'>
                     {item.verses[0].reference}
@@ -168,7 +277,6 @@ export default function VerseAccordion () {
                   </p>
                 </div>
 
-                {/* Verse 2 */}
                 <div className='flex flex-col gap-1'>
                   <p className='text-base md:text-lg font-semibold font-mono text-[#8f3337]'>
                     {item.verses[1].reference}
@@ -179,7 +287,6 @@ export default function VerseAccordion () {
                 </div>
               </div>
 
-              {/* Summary */}
               <div className='summary mt-auto p-4 text-xs md:text-sm text-center font-medium bg-gray-50 rounded-t-2xl border-t-2 border-[#8f3337]'>
                 {item.explanation}
               </div>
@@ -206,6 +313,7 @@ const bibleThemes = [
         text: 'Now faith is confidence in what we hope for and assurance about what we do not see.'
       }
     ],
+    isOpened: false,
     explanation:
       'Both verses emphasize that faith is about confident belief—believing before seeing, trusting that God has already answered. Jesus teaches active belief in prayer while Hebrews defines faith as spiritual confidence in the unseen.'
   },
@@ -223,6 +331,8 @@ const bibleThemes = [
         text: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ's power may rest on me."
       }
     ],
+    isOpened: false,
+
     explanation:
       "These verses work together beautifully—Paul declares he can do all things through Christ, and in Corinthians he explains why: God's power shines brightest in our weakness. True strength isn't self-sufficiency but complete dependence on Christ."
   },
@@ -240,6 +350,8 @@ const bibleThemes = [
         text: 'For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.'
       }
     ],
+    isOpened: false,
+
     explanation:
       "Jeremiah establishes God's love as everlasting and kind, while Romans powerfully declares that absolutely nothing can separate us from that love. Together they form an unbreakable promise—God's love has no beginning, no end, and no limits."
   },
@@ -257,6 +369,8 @@ const bibleThemes = [
         text: 'Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.'
       }
     ],
+    isOpened: false,
+
     explanation:
       "Jesus promises His supernatural peace—different from worldly peace—and Paul explains how to access it: through prayer with thanksgiving. The result is a peace that doesn't make logical sense, guarding our hearts against anxiety."
   },
@@ -274,6 +388,8 @@ const bibleThemes = [
         text: 'I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.'
       }
     ],
+    isOpened: false,
+
     explanation:
       "Proverbs calls us to trust God rather than our own limited understanding, while Psalms reveals God's response—He promises to instruct, teach, and counsel us personally. Our part is trust; His part is guidance."
   }

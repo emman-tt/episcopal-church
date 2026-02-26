@@ -1,9 +1,12 @@
-import { MenuIcon } from 'lucide-react'
+import { MenuIcon, X } from 'lucide-react'
 import cross from '../../assets/img/cross.png'
-import { gsap } from '../../libs/gsap'
-import { useEffect } from 'react'
+import { gsap, SplitText } from '../../libs/gsap'
+import { use, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useNavi } from '../context/navigation'
 export default function Header ({ textColor = 'white', className = '' }) {
+  const { toggleNav, showNav } = useNavi()
+
   useEffect(() => {
     gsap.fromTo(
       '.nav-item',
@@ -19,6 +22,40 @@ export default function Header ({ textColor = 'white', className = '' }) {
       }
     )
   }, [])
+
+  useEffect(() => {
+    const navArray = gsap.utils.toArray('.nav')
+
+    const masterTL = gsap.timeline()
+
+    navArray.forEach((text, index) => {
+      const splitForm = new SplitText(text, {
+        type: 'words,chars,lines'
+      })
+
+      const navTL = gsap.timeline()
+
+      navTL.from(splitForm.lines, {
+        // y: 20,
+        x: 30,
+        opacity: 0,
+        duration: 0.3,
+        ease: 'none',
+        stagger: {
+          // amount: 1.3,
+          from: 'start'
+        }
+      })
+
+      // Add this nav's timeline to the master timeline
+      // This will play them one after another with a 0.2s gap
+      masterTL.add(navTL, index > 0 ? '-=0.2' : '+=0')
+    })
+
+    return () => {
+      masterTL.kill()
+    }
+  }, [showNav])
 
   return (
     <section
@@ -49,10 +86,49 @@ export default function Header ({ textColor = 'white', className = '' }) {
             </NavLink>
           ))}
         </div>
-        <div className='rounded-full sm:hidden p-3 md:p-4 bg-[#8e3635] text-white cursor-pointer'>
-          <MenuIcon size={20} />
+        <div
+          className={`rounded-full sm:hidden  ${
+            showNav ? 'fixed' : 'relative'
+          } z-20 p-3 md:p-4 bg-[#8e3635] text-white cursor-pointe`}
+        >
+          {showNav ? (
+            <X
+              size={20}
+              className='h-full w-full'
+              onClick={() => {
+                toggleNav(false)
+              }}
+            />
+          ) : (
+            <MenuIcon
+              className='h-full w-full'
+              onClick={() => {
+                toggleNav(true)
+              }}
+              size={20}
+            />
+          )}
         </div>
       </nav>
+
+      {/* mobile nav */}
+
+      {showNav && (
+        <section className='bg-white w-full sm:hidden h-screen  pt-30 px-5 items-center z-10 overflow-hidden flex flex-col gap-5 fixed inset-0'>
+          {nav.map(item => (
+            <NavLink
+              key={item.id}
+              to={item.href}
+              onClick={() => {
+                toggleNav(false)
+              }}
+              className='  nav  text-black font-semibold font-mono text-2xl'
+            >
+              {item.name}
+            </NavLink>
+          ))}
+        </section>
+      )}
     </section>
   )
 }

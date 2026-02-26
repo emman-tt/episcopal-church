@@ -11,29 +11,26 @@ import anniversary from '../../assets/img/accordion/anniversary.jpg'
 import baptism from '../../assets/img/accordion/baptism.jpg'
 import easter from '../../assets/img/accordion/easter.jpg'
 
-export default function Accordion() {
+export default function Accordion () {
   const [selected, setSelected] = useState(0)
   const container = useRef(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const marquee = useRef(null)
   const description = useRef(null)
 
-  // Store GSAP animations
   useEffect(() => {
-    // Set initial clip path
     gsap.set(container.current, {
       clipPath: 'polygon(5% 28%, 51% 36%, 95% 28%, 96% 77%, 48% 71%, 5% 80%)',
       gap: 10
     })
   }, [])
 
-  function displaySelected(item) {
-    if (isTransitioning) return // Prevent multiple clicks
+  function displaySelected (item) {
+    if (isTransitioning) return
 
     setIsTransitioning(true)
     setSelected(item)
 
-    // Animate to circle
     gsap.to(container.current, {
       clipPath: 'circle(70% at 50% 50%)',
       gap: 0,
@@ -43,19 +40,17 @@ export default function Accordion() {
     })
   }
 
-  function returnDefault() {
+  function returnDefault () {
     if (isTransitioning) return
 
     setIsTransitioning(true)
     setSelected(0)
 
-    // First animate to no clip path (full rectangle)
     gsap.to(container.current, {
       clipPath: 'none',
       duration: 0.3,
       ease: 'power2.inOut',
       onComplete: () => {
-        // Then set the polygon instantly
         gsap.set(container.current, {
           clipPath:
             'polygon(5% 28%, 51% 36%, 95% 28%, 96% 77%, 48% 71%, 5% 80%)',
@@ -69,25 +64,25 @@ export default function Accordion() {
   }
 
   useEffect(() => {
-    // Kill any existing animations on marquee
     gsap.killTweensOf(marquee.current)
-    if (description.current || selected > 0) {
-      const descriptionSplit = new SplitText(description.current, {
-        type: 'words,lines,chars'
-      })
-
-      gsap.to(descriptionSplit.chars, {
-        x: 200,
-        duration: 0.4,
-        stagger: {
-          amount: 0.3,
-          from: 'end'
-        },
-        ease: 'bounce'
-      })
-    }
 
     if (selected > 0) {
+      if (description.current) {
+        const descriptionSplit = new SplitText(description.current, {
+          type: 'words,lines,chars'
+        })
+
+        gsap.to(descriptionSplit.chars, {
+          x: 0,
+          duration: 0.4,
+          stagger: {
+            amount: 0.3,
+            from: 'end'
+          },
+          ease: 'power2.out'
+        })
+      }
+
       gsap.set(marquee.current, {
         x: 0,
         alignSelf: 'center',
@@ -107,30 +102,28 @@ export default function Accordion() {
 
   return (
     <section className='relative w-full h-max'>
-      {/* Back button - only show when selected */}
       {selected > 0 && (
         <button
           onClick={() => {
             returnDefault()
           }}
-          className='rounded-4xl -top-10 md:-top-15 z-30 left-1/2 -translate-x-1/2 absolute cursor-pointer text-white font-semibold bg-[#8f3337] p-2 md:p-3 px-8 md:px-15 hover:bg-[#6b282b] transition-colors text-sm md:text-base'
+          className='rounded-4xl  md:-top-15 z-30 sm:left-1/2 -translate-x-1/2 absolute cursor-pointer text-white font-semibold bg-[#8f3337] p-2 md:p-3 px-9 md:px-15 max-sm:-bottom-20 max-sm:py-4  max-sm:right-0 hover:bg-[#6b282b] transition-colors text-sm md:text-base'
         >
           Back
         </button>
       )}
 
-      <section className='relative flex justify-center overflow-hidden items-center w-full h-[60vh] md:h-130'>
-        {/* Main container with clip path */}
+      <section className='relative flex justify-center overflow-hidden items-center w-full h-[70vh] md:h-130'>
         <section
           ref={container}
-          className='relative gap-0 px-4 md:px-10 w-full h-full md:h-200'
+          className='relative gap-0 px-0 md:px-10 w-full h-full md:h-200'
         >
           <section
             ref={marquee}
-            className={`h-full relative gap-4 md:gap-10 flex ${selected > 0 ? 'w-full justify-center' : 'min-w-max'}`}
+            className={`h-full relative gap-10 md:gap-5 flex ${
+              selected > 0 ? 'w-full justify-center' : 'min-w-max'
+            }`}
           >
-            {/* Loading overlay */}
-
             {isTransitioning && (
               <div className='absolute inset-0 flex items-center justify-center bg-black/20 z-40 backdrop-blur-sm'>
                 <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#8f3337]'></div>
@@ -148,19 +141,21 @@ export default function Accordion() {
                 style={{
                   width:
                     selected === 0
-                      ? '220px'
+                      ? '280px'
                       : selected === item.id
-                        ? '100%'
-                        : '0px',
+                      ? '100%'
+                      : '0px',
                   minWidth: selected === 0 ? '220px' : '0px',
-                  display: selected === 0 || selected === item.id ? 'block' : 'none'
+                  display:
+                    selected === 0 || selected === item.id ? 'block' : 'none'
                 }}
               >
                 <div
-                  className={`flex items-center justify-center w-full z-20 text-xl md:text-3xl font-light transition-all ease-in-out duration-600 text-white   ${selected > 0
-                      ? 'bg-black/40 md:bg-white/5 text-2xl md:text-4xl font-semibold p-6 md:p-10 backdrop-blur-xs border-0 md:border-2 rounded-2xl md:border-white/30 shadow-xl h-auto md:h-max w-[90%] md:w-max top-1/2 md:top-[60%] left-1/2 md:left-[20%] -translate-x-1/2 md:translate-x-0 -translate-y-1/2 md:translate-y-0'
+                  className={`flex  items-center justify-center w-full z-20 text-xl md:text-3xl font-light  ease-in-out duration-0 text-white  bg-black/30 hover:bg-black/0    ${
+                    selected > 0
+                      ? 'sm:bg-black/40 bg-black/10 md:bg-white/5 text-2xl md:text-4xl font-semibold p-6 md:p-10 sm:backdrop-blur-xs border-0 md:border-2 rounded-2xl max-sm:flex-col max-sm:gap-0  max-sm:p-2 md:border-white/30 sm:shadow-xl h-auto md:h-max w-[90%] md:w-max top-1/2 md:top-[60%] left-1/2 md:left-[20%] -translate-x-1/2 md:translate-x-0 -translate-y-1/200 md:translate-y-0'
                       : 'bg-linear-to-b from-transparent via-black/40 to-black/80'
-                    } text-center absolute top-0 bottom-0 left-0 right-0 rounded-4xl `}
+                  } text-center absolute top-0 bottom-0 left-0 right-0 rounded-4xl `}
                 >
                   {item.header}
 
@@ -174,6 +169,7 @@ export default function Accordion() {
                   )}
                 </div>
                 <img
+                  loading='lazy'
                   src={item.image}
                   className='w-full h-full object-cover rounded-4xl'
                   alt={`Art ${item.id}`}
@@ -221,35 +217,35 @@ const arts = [
   },
   {
     id: 6,
-    image: podcast, // Replace with actual image
+    image: podcast,
     header: 'Podcast Recording',
     description: 'Weekly sermons and discussions available on all platforms'
   },
   {
     id: 7,
-    image: glass, // Replace with actual image
+    image: glass,
     header: 'Stained Glass Windows',
     description: 'The beauty and symbolism of our sanctuary windows'
   },
   {
     id: 8,
-    image: bible, // Replace with actual image
+    image: bible,
     header: 'Vacation Bible School',
     description: 'Kids creating crafts and learning through art'
   },
   {
     id: 9,
-    image: media, // Replace with actual image
+    image: media,
     header: 'Media Team Training',
     description: 'Volunteers learning to run cameras and livestream'
   },
   {
     id: 10,
-    image: anniversary, // Replace with actual image
+    image: anniversary,
     header: 'Church Anniversary',
     description: 'Celebrating our history through photos and displays'
   },
-    {
+  {
     id: 11,
     image: easter,
     header: 'Easter Cantata Choir',
@@ -268,4 +264,22 @@ const arts = [
     header: 'Christmas Eve Candlelight',
     description: 'A sacred evening of carols, scripture, and candlelight'
   },
+  {
+    id: 114,
+    image: sunday,
+    header: 'Sunday Worship Livestream',
+    description: 'Join us online for worship every Sunday at 10:30am'
+  },
+  {
+    id: 15,
+    image: youth,
+    header: 'Youth Art Exhibition',
+    description: 'Our young artists displaying their creative gifts'
+  },
+  {
+    id: 16,
+    image: podcast,
+    header: 'Podcast Recording',
+    description: 'Weekly sermons and discussions available on all platforms'
+  }
 ]

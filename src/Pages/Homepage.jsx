@@ -45,7 +45,7 @@ export default function Homepage () {
             start: `top+=${(index - 1) * 30 + 20}%  top`,
             end: `+=50%`,
             scrub: 4,
-            // markers: true
+      
           }
         }
       )
