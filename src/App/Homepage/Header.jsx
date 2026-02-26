@@ -58,7 +58,8 @@ export default function Header ({ textColor = 'white', className = '' }) {
     >
       <header className='flex items-center'>
         <div className='h-full w-12 md:w-20'>
-          <img loading="lazy"
+          <img
+            loading='lazy'
             src={
               'https://res.cloudinary.com/drpnhajh9/image/upload/v1772140081/cross_kog8kg.png'
             }
@@ -144,16 +145,16 @@ const nav = [
     name: "Today's verses",
     href: '/verses'
   },
-  {
-    id: 2,
-    name: 'Our Community',
-    href: '/community'
-  },
-  {
-    id: 4,
-    name: 'Serve',
-    href: '/serve'
-  },
+  // {
+  //   id: 2,
+  //   name: 'Our Community',
+  //   href: '/community'
+  // },
+  // {
+  //   id: 4,
+  //   name: 'Serve',
+  //   href: '/serve'
+  // },
   {
     id: 5,
     name: 'About',

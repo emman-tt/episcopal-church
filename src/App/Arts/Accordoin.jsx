@@ -80,7 +80,7 @@ export default function Accordion () {
         width: 'full'
       })
     } else {
-      // Start infinite scroll
+ 
       gsap.to(marquee.current, {
         x: '-=50%',
         duration: 40,
@@ -159,7 +159,7 @@ export default function Accordion () {
                   )}
                 </div>
                 <img
-                  loading='lazy'
+            
                   src={item.image}
                   className='w-full h-full object-cover rounded-4xl'
                   alt={`Art ${item.id}`}
