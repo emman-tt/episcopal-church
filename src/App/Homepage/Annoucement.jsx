@@ -1,5 +1,5 @@
 import { Dot } from 'lucide-react'
-import church2 from '../../assets/img/church2.jpg'
+
 export default function Announcement ({ annouceRef }) {
   return (
     <section
@@ -10,8 +10,8 @@ export default function Announcement ({ annouceRef }) {
       <section className='w-full flex flex-col  md:flex-row h-full items-center md:items-end gap-10 md:gap-0'>
         <div className='h-64 sm:h-80 md:h-110 relative w-full md:w-80 bg-[#8e3635] flex justify-center items-center'>
           <div className='absolute -top-10 md:-top-40 right-0 md:-right-60 w-full md:w-80 h-48 sm:h-64 md:h-90 z-1'>
-            <img
-              src={church2}
+            <img loading="lazy"
+              src={'https://res.cloudinary.com/drpnhajh9/image/upload/v1772140071/church2_xoqp0z.jpg'}
               alt=''
               className='h-full w-full object-cover shadow-lg'
             />

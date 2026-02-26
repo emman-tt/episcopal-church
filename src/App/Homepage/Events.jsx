@@ -1,11 +1,11 @@
-import event1 from '../../assets/img/event1.jpg'
-import event2 from '../../assets/img/event2.jpg'
-import event3 from '../../assets/img/event3.jpg'
 
-export default function Events() {
+
+export default function Events () {
   return (
     <section className='my-20 md:my-40 flex flex-col gap-8 md:gap-10 p-6 md:p-20'>
-      <h1 className='text-3xl md:text-6xl font-bold text-center w-full'>Upcoming Events</h1>
+      <h1 className='text-3xl md:text-6xl font-bold text-center w-full'>
+        Upcoming Events
+      </h1>
       <ul className='grid grid-cols-1 md:flex w-full h-auto md:h-110 gap-8 md:gap-20 md:px-20'>
         {upcomingEvents.map(item => (
           <li
@@ -13,7 +13,7 @@ export default function Events() {
             key={item.id}
           >
             <div className='h-[60%] w-full'>
-              <img
+              <img loading="lazy"
                 src={item.image}
                 className='h-full w-full rounded-t-xl object-cover'
                 alt='event'
@@ -47,7 +47,8 @@ const upcomingEvents = [
     description:
       'Celebrate the resurrection of Jesus with special music and an uplifting message.',
     location: 'Main Sanctuary',
-    image: event2
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772139836/event2_yubngm.jpg'
   },
   {
     id: 2,
@@ -57,7 +58,8 @@ const upcomingEvents = [
     description:
       'Teens and young adults, join us for food, games, and fun fellowship!',
     location: 'Youth Center',
-    image: event1
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772139833/event1_s53ct9.jpg'
   },
   {
     id: 3,
@@ -67,6 +69,7 @@ const upcomingEvents = [
     description:
       'Serving our neighborhood with food distribution and prayer. Volunteers welcome!',
     location: 'Church Parking Lot',
-    image: event3
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772139830/event3_tnbqlh.jpg'
   }
 ]

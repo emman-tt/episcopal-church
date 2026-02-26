@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react'
-import church6 from '../../assets/img/church6.jpg'
 import { Dots } from '../../components/dots'
 import { gsap, ScrollTrigger } from '../../libs/gsap'
-export default function Schedule() {
+export default function Schedule () {
   const box1 = useRef(null)
 
   const containerRef = useRef(null)
@@ -67,7 +66,9 @@ export default function Schedule() {
               key={item.id}
               className='schedule-item border-l-4 md:border-l-7 rounded-xl hover:bg-[#f9ecea] cursor-pointer py-5 md:py-7 list-disc flex flex-col gap-4 md:gap-6 border-[#8f3337] pl-6 md:pl-10'
             >
-              <li className='font-semibold text-base md:text-lg font-mono'>{item.header}</li>
+              <li className='font-semibold text-base md:text-lg font-mono'>
+                {item.header}
+              </li>
               <li className='text-sm md:text-sm font-semibold'>{item.time1}</li>
               <li className='text-sm md:text-sm font-semibold'>{item.time2}</li>
               <li className='text-sm md:text-sm font-semibold'>{item.time3}</li>
@@ -76,8 +77,10 @@ export default function Schedule() {
         </section>
         <section className='items-center md:items-end w-full flex justify-center order-1 md:order-2 mb-10 md:mb-0'>
           <div className='h-64 sm:h-80 md:h-140 w-[90%] md:w-[80%] relative bg-[#8f3337] rounded'>
-            <img
-              src={church6}
+            <img loading="lazy"
+              src={
+                'https://res.cloudinary.com/drpnhajh9/image/upload/v1772139829/church4_q55lpp.jpg'
+              }
               className='h-full absolute -left-4 sm:-left-8 md:-left-40 -top-4 sm:-top-8 md:-top-30 w-full object-cover shadow-2xl'
               alt=''
             />
@@ -85,7 +88,9 @@ export default function Schedule() {
         </section>
       </section>
       <div className='mt-10  h-40 w-full justify-center max-sm:justify-end items-center flex'>
-        <Dots className={`h-full max-sm:gap-x-0 max-sm:text-gray-500 max-sm:gap-y-0`}  />
+        <Dots
+          className={`h-full max-sm:gap-x-0 max-sm:text-gray-500 max-sm:gap-y-0`}
+        />
       </div>
     </section>
   )

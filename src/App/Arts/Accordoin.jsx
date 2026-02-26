@@ -1,15 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, SplitText } from '../../libs/gsap'
-import bible from '../../assets/img/accordion/bible.jpg'
-import christmas from '../../assets/img/accordion/christmas.jpg'
-import glass from '../../assets/img/accordion/glass.jpg'
-import media from '../../assets/img/accordion/media.jpg'
-import podcast from '../../assets/img/accordion/podcast.jpg'
-import sunday from '../../assets/img/accordion/sunday.jpg'
-import youth from '../../assets/img/accordion/youth.jpg'
-import anniversary from '../../assets/img/accordion/anniversary.jpg'
-import baptism from '../../assets/img/accordion/baptism.jpg'
-import easter from '../../assets/img/accordion/easter.jpg'
 
 export default function Accordion () {
   const [selected, setSelected] = useState(0)
@@ -186,100 +176,109 @@ export default function Accordion () {
 const arts = [
   {
     id: 1,
-    image: easter,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137882/easter_qyru7k.jpg',
     header: 'Easter Cantata Choir',
     description:
       'Our annual Easter celebration featuring the combined choirs and orchestra'
   },
   {
     id: 2,
-    image: baptism,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137880/baptism_fexczf.jpg',
     header: 'Baptism Service',
     description: 'Celebrating new life in Christ through baptism'
   },
   {
     id: 3,
-    image: christmas,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137882/christmas_jmnyqm.jpg',
     header: 'Christmas Eve Candlelight',
     description: 'A sacred evening of carols, scripture, and candlelight'
   },
   {
     id: 4,
-    image: sunday,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137878/sunday_qn0ivh.jpg',
     header: 'Sunday Worship Livestream',
     description: 'Join us online for worship every Sunday at 10:30am'
   },
   {
     id: 5,
-    image: youth,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137882/youth_o8urmw.jpg',
     header: 'Youth Art Exhibition',
     description: 'Our young artists displaying their creative gifts'
   },
   {
     id: 6,
-    image: podcast,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137882/podcast_cwtiww.jpg',
     header: 'Podcast Recording',
     description: 'Weekly sermons and discussions available on all platforms'
   },
   {
     id: 7,
-    image: glass,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137879/glass_uuqnll.jpg',
     header: 'Stained Glass Windows',
     description: 'The beauty and symbolism of our sanctuary windows'
   },
   {
     id: 8,
-    image: bible,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137879/bible_mbucac.jpg',
     header: 'Vacation Bible School',
     description: 'Kids creating crafts and learning through art'
   },
   {
     id: 9,
-    image: media,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137879/media_axnyap.jpg',
     header: 'Media Team Training',
     description: 'Volunteers learning to run cameras and livestream'
   },
   {
     id: 10,
-    image: anniversary,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137881/anniversary_gcfmfg.jpg',
     header: 'Church Anniversary',
     description: 'Celebrating our history through photos and displays'
   },
   {
     id: 11,
-    image: easter,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137882/easter_qyru7k.jpg',
     header: 'Easter Cantata Choir',
     description:
       'Our annual Easter celebration featuring the combined choirs and orchestra'
   },
   {
     id: 12,
-    image: baptism,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137880/baptism_fexczf.jpg',
     header: 'Baptism Service',
     description: 'Celebrating new life in Christ through baptism'
   },
   {
     id: 13,
-    image: christmas,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137882/christmas_jmnyqm.jpg',
     header: 'Christmas Eve Candlelight',
     description: 'A sacred evening of carols, scripture, and candlelight'
   },
   {
-    id: 114,
-    image: sunday,
+    id: 14,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137878/sunday_qn0ivh.jpg',
     header: 'Sunday Worship Livestream',
     description: 'Join us online for worship every Sunday at 10:30am'
   },
   {
     id: 15,
-    image: youth,
+    image:
+      'https://res.cloudinary.com/drpnhajh9/image/upload/v1772137882/youth_o8urmw.jpg',
     header: 'Youth Art Exhibition',
     description: 'Our young artists displaying their creative gifts'
-  },
-  {
-    id: 16,
-    image: podcast,
-    header: 'Podcast Recording',
-    description: 'Weekly sermons and discussions available on all platforms'
   }
 ]

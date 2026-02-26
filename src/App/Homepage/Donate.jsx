@@ -1,6 +1,3 @@
-import cross5 from '../../assets/img/cross5.jpg'
-import cross6 from '../../assets/img/cross6.svg'
-import bible from '../../assets/img/accordion/bible.jpg'
 import { gsap, SplitText } from '../../libs/gsap'
 import { useRef, useEffect } from 'react'
 
@@ -37,15 +34,15 @@ export default function Donate ({ donateRef }) {
       ref={donateRef}
       className='absolute inset-0 w-full h-screen max-sm:h-[110vh] mb-20 overflow-hidden text-white mt-10 md:mt-40 bg-[#111111] flex flex-col md:flex-row p-6 md:px-20 gap-8 md:gap-0'
     >
-      <img
-        src={cross6}
+      <img loading="lazy"
+        src={'https://res.cloudinary.com/drpnhajh9/image/upload/v1772140052/cross6_rtw1ii.svg'}
         className='h-auto  absolute -bottom-10  -rotate-40 w-50 left-40 z-1'
         alt=''
       />
       <div className='w-full md:w-[40%] h-[30%] md:h-[70%]'>
-        <img
+        <img loading="lazy"
           ref={imageOne}
-          src={cross5}
+          src={'https://res.cloudinary.com/drpnhajh9/image/upload/v1772140073/cross5_khiwng.jpg'}
           className='w-full max-sm:hidden h-full object-cover'
           alt=''
         />
@@ -65,14 +62,14 @@ export default function Donate ({ donateRef }) {
         </button>
       </div>
       <div className='w-full md:w-[40%] h-[30%] md:h-[70%] relative flex self-center md:self-end'>
-        <img
-          src={cross6}
+        <img loading="lazy"
+          src={'https://res.cloudinary.com/drpnhajh9/image/upload/v1772140052/cross6_rtw1ii.svg'}
           className='h-auto absolute -top-10 md:-top-40 w-32 md:w-50 left-5 md:left-20 z-1 opacity-50 md:opacity-100'
           alt=''
         />
-        <img
+        <img loading="lazy"
           ref={imageTwo}
-          src={bible}
+          src={'https://res.cloudinary.com/drpnhajh9/image/upload/v1772138422/belief_mtsz73.jpg'}
           className='w-full max-sm:hidden relative z-2 h-full object-cover'
           alt=''
         />

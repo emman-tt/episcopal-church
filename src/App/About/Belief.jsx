@@ -1,9 +1,9 @@
-import belief from '../../assets/img/about/belief.jpg'
+
 export default function Belief() {
   return (
     <section className='min-h-max md:h-140 flex flex-col md:flex-row px-6 md:px-10 mb-20 md:mb-80 gap-10 md:gap-0'>
       <section className='w-full h-64 md:h-full'>
-        <img src={belief} className='w-full rounded-2xl h-full object-cover' alt='' />
+        <img loading="lazy" src={'https://res.cloudinary.com/drpnhajh9/image/upload/v1772138422/belief_mtsz73.jpg'} className='w-full rounded-2xl h-full object-cover' alt='' />
       </section>
 
       <section className='flex flex-col gap-6 md:gap-10 h-full w-full justify-center items-center py-10 md:py-0'>

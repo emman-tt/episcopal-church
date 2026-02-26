@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { gsap, ScrollToPlugin, SplitText } from '../../libs/gsap'
+import { gsap, SplitText } from '../../libs/gsap'
 
 export default function Hero() {
   const headerText = useRef(null)

@@ -1,7 +1,6 @@
 import { MenuIcon, X } from 'lucide-react'
-import cross from '../../assets/img/cross.png'
 import { gsap, SplitText } from '../../libs/gsap'
-import { use, useEffect } from 'react'
+import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useNavi } from '../context/navigation'
 export default function Header ({ textColor = 'white', className = '' }) {
@@ -36,19 +35,15 @@ export default function Header ({ textColor = 'white', className = '' }) {
       const navTL = gsap.timeline()
 
       navTL.from(splitForm.lines, {
-        // y: 20,
         x: 30,
         opacity: 0,
         duration: 0.3,
         ease: 'none',
         stagger: {
-          // amount: 1.3,
           from: 'start'
         }
       })
 
-      // Add this nav's timeline to the master timeline
-      // This will play them one after another with a 0.2s gap
       masterTL.add(navTL, index > 0 ? '-=0.2' : '+=0')
     })
 
@@ -63,7 +58,12 @@ export default function Header ({ textColor = 'white', className = '' }) {
     >
       <header className='flex items-center'>
         <div className='h-full w-12 md:w-20'>
-          <img src={cross} alt='cross' />
+          <img loading="lazy"
+            src={
+              'https://res.cloudinary.com/drpnhajh9/image/upload/v1772140081/cross_kog8kg.png'
+            }
+            alt='cross'
+          />
         </div>
         <div className='flex flex-col'>
           <h1 className='text-2xl md:text-3xl font-light font-serif'>Grace</h1>
@@ -88,7 +88,7 @@ export default function Header ({ textColor = 'white', className = '' }) {
         </div>
         <div
           className={`rounded-full sm:hidden  ${
-            showNav ? 'fixed' : 'relative'
+            showNav ? 'fixed right-8' : 'relative'
           } z-20 p-3 md:p-4 bg-[#8e3635] text-white cursor-pointe`}
         >
           {showNav ? (

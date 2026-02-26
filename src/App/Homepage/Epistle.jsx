@@ -1,4 +1,3 @@
-import cross3 from '../../assets/img/cross3.svg'
 import { Dots } from '../../components/dots'
 export default function Epistle ({ epistleRef }) {
   return (
@@ -7,7 +6,7 @@ export default function Epistle ({ epistleRef }) {
       className='absolute inset-0 h-screen w-full p-6 md:p-30 px-6 md:px-60 flex flex-col gap-10 md:gap-30 pt-10 md:pt-20 bg-white'
     >
       <div className='mt-10  h-40 w-full justify-center max-sm:justify-end items-center flex'>
-        <Dots className={`h-ful max-sm:gap-x-1 max-sm:gap-y-2`}  />
+        <Dots className={`h-ful max-sm:gap-x-1 max-sm:gap-y-2`} />
       </div>
       <div className='flex flex-col gap-8 p-16  relative items-center justify-center'>
         <div className='absolute left-0 top-0 w-1 h-15 bg-[#8e3635]'></div>
@@ -21,12 +20,14 @@ export default function Epistle ({ epistleRef }) {
         <div className='absolute right-0 bottom-0 w-1 h-15 bg-[#8e3635]'></div>
 
         <div className='absolute -z-1 flex justify-center items-center inset-0'>
-          <img
+          <img loading="lazy"
             color='green'
             width={170}
             height={200}
             className='object-cover opacity-10'
-            src={cross3}
+            src={
+              'https://res.cloudinary.com/drpnhajh9/image/upload/v1772140074/cross4_jltyye.png'
+            }
             alt='external-cross-easter-day-justicon-lineal-justicon'
           />
         </div>
@@ -46,4 +47,3 @@ export default function Epistle ({ epistleRef }) {
   )
 }
 
-const dots = [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]

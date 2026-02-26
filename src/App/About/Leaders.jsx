@@ -1,9 +1,9 @@
-import leaders from '../../assets/img/about/leaders.jpg'
+
 export default function Leaders() {
   return (
     <section className='w-full min-h-max md:h-160 flex flex-col md:flex-row mt-10 md:mt-30 mb-10 md:mb-30 px-6 md:px-10 gap-10 md:gap-0'>
       <section className='w-full rounded-2xl h-64 md:h-full'>
-        <img src={leaders} className='w-full rounded-2xl h-full object-cover' alt="" />
+        <img loading="lazy" src={'https://res.cloudinary.com/drpnhajh9/image/upload/v1772138428/leaders_h8gei8.jpg'} className='w-full rounded-2xl h-full object-cover' alt="" />
       </section>
       <section className='flex flex-col w-full h-full gap-5 px-4 md:px-10'>
         <h2 className='text-lg md:text-xl font-light '> Our Leadership</h2>

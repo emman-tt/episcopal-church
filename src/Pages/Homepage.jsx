@@ -1,7 +1,5 @@
 import Header from '../App/Homepage/Header'
 import Hero from '../App/Homepage/Hero'
-import bg1 from '../assets/img/bg1.jpg'
-import bg4 from '../assets/img/bg4.jpg'
 import Epistle from '../App/Homepage/Epistle'
 import Announcement from '../App/Homepage/Annoucement'
 import Donate from '../App/Homepage/Donate'
@@ -9,13 +7,11 @@ import Schedule from '../App/Homepage/Schedule'
 import Testimonial from '../App/Homepage/Testimonial'
 import Events from '../App/Homepage/Events'
 import Footer from '../App/Homepage/Footer'
-
-import { useEffect, useMemo, useRef, useState } from 'react'
-
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
 gsap.registerPlugin(ScrollTrigger)
+
 export default function Homepage () {
   const containerRef = useRef(null)
   const donateRef = useRef(null)
@@ -23,7 +19,6 @@ export default function Homepage () {
   const epistleRef = useRef(null)
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600)
-
 
   useEffect(() => {
     const cards = [epistleRef.current, announceRef.current, donateRef.current]
@@ -44,8 +39,7 @@ export default function Homepage () {
             trigger: container,
             start: `top+=${(index - 1) * 30 + 20}%  top`,
             end: `+=50%`,
-            scrub: 4,
-      
+            scrub: 4
           }
         }
       )
@@ -55,7 +49,7 @@ export default function Homepage () {
       trigger: container,
       start: isMobile ? 'top+=7% top' : 'top+=10% top',
       end: isMobile ? '+=170%' : '+=190%',
-      pin: true,
+      pin: true
       // markers: true
     })
 
@@ -67,15 +61,25 @@ export default function Homepage () {
       <section className='w-full relative border h-170'>
         <div className='absolute inset-0 -z-1 bg-black/50'></div>
         <img
-          src={bg1}
+          loading='lazy'
+          src={
+            'https://res.cloudinary.com/drpnhajh9/image/upload/v1772140062/bg1_unobjt.jpg'
+          }
           className='absolute inset-0 h-full    w-full object-cover -z-2'
           alt=''
         />
 
-        <Header  textColor='white'/>
+        <Header textColor='white' />
         <Hero />
         <div className='absolute max-sm:hidden  w-90 h-100 z-5 -bottom-40 right-30 border-14 border-[#8e3635]'>
-          <img src={bg4} className='h-full  w-full object-cover' alt='church' />
+          <img
+            loading='lazy'
+            src={
+              'https://res.cloudinary.com/drpnhajh9/image/upload/v1772140076/bg4_zbu3li.jpg'
+            }
+            className='h-full  w-full object-cover'
+            alt='church'
+          />
         </div>
       </section>
 

@@ -1,4 +1,4 @@
-import history from '../../assets/img/about/history.jpg'
+
 export default function History() {
   return (
     <section className='w-full min-h-max md:h-220 flex flex-col md:flex-row px-6 md:px-10 mb-20 md:mb-80 gap-10 md:gap-0'>
@@ -26,7 +26,7 @@ export default function History() {
 
       <section className='w-full h-64 md:h-full'>
         <img
-          src={history}
+          src={'https://res.cloudinary.com/drpnhajh9/image/upload/v1772138433/history_aps6tv.jpg'}
           className='w-full rounded-2xl h-full object-cover'
           alt=''
         />
