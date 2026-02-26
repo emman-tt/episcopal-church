@@ -10,17 +10,20 @@ import Testimonial from '../App/Homepage/Testimonial'
 import Events from '../App/Homepage/Events'
 import Footer from '../App/Homepage/Footer'
 
-import { useEffect, useRef } from 'react'
-import { useGSAP } from '@gsap/react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
-export default function Homepage() {
+export default function Homepage () {
   const containerRef = useRef(null)
   const donateRef = useRef(null)
   const announceRef = useRef(null)
   const epistleRef = useRef(null)
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600)
+
 
   useEffect(() => {
     const cards = [epistleRef.current, announceRef.current, donateRef.current]
@@ -34,14 +37,14 @@ export default function Homepage() {
 
       gsap.fromTo(
         card,
-        { yPercent: 100 * index },
+        { yPercent: isMobile ? 150 * index : 100 * index },
         {
           yPercent: 0,
           scrollTrigger: {
             trigger: container,
             start: `top+=${(index - 1) * 30 + 20}%  top`,
             end: `+=50%`,
-            scrub: 4
+            scrub: 4,
             // markers: true
           }
         }
@@ -50,9 +53,9 @@ export default function Homepage() {
 
     ScrollTrigger.create({
       trigger: container,
-      start: 'top+=10% top',
-      end: '+=190%',
-      pin: true
+      start: isMobile ? 'top+=7% top' : 'top+=10% top',
+      end: isMobile ? '+=170%' : '+=190%',
+      pin: true,
       // markers: true
     })
 
@@ -69,14 +72,17 @@ export default function Homepage() {
           alt=''
         />
 
-        <Header />
+        <Header  textColor='white'/>
         <Hero />
         <div className='absolute max-sm:hidden  w-90 h-100 z-5 -bottom-40 right-30 border-14 border-[#8e3635]'>
           <img src={bg4} className='h-full  w-full object-cover' alt='church' />
         </div>
       </section>
 
-      <main className=' relative h-[170vh] ' ref={containerRef}>
+      <main
+        className=' relative h-[170vh] max-sm:h-[150vh] '
+        ref={containerRef}
+      >
         <Epistle epistleRef={epistleRef} />
         <Announcement annouceRef={announceRef} />
         <Donate donateRef={donateRef} />

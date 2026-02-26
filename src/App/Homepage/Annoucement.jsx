@@ -38,23 +38,63 @@ export default function Announcement ({ annouceRef }) {
         </div>
       </section>
       <section className='flex flex-col  gap-4 md:gap-7 h-full w-full mt-10 md:mt-0 md:pr-10'>
-        {[1, 2, 3, 4].map(item => (
+        {announcements.map(item => (
           <div
             key={item}
             className='flex gap-4 md:gap-6 items-center border-b border-b-gray-300 pb-4 md:pb-5'
           >
-            <div className='min-w-[70px] md:w-[20%] px-2 py-4 md:px-3 md:py-6 rounded-full border border-[#8e3635] flex flex-col items-center text-xs md:text-md font-bold cursor-pointer hover:bg-[#8e3635] hover:text-white transition-colors'>
-              <span>Feb </span>
-              <span>24th</span>
+            <div className='min-w-17.5 md:w-[20%] px-2 py-4 md:px-3 md:py-6 rounded-full border border-[#8e3635] flex flex-col items-center text-xs md:text-md font-bold cursor-pointer hover:bg-[#8e3635] hover:text-white transition-colors'>
+              <span>{item.month} </span>
+              <span>{item.day}</span>
             </div>
 
-            <div className='text-xs md:text-sm'>
-              Women's Retreat, call the Office or Beth Kang for more information
-              Women's Retreat, call the Office
-            </div>
+            <div className='text-xs md:text-sm'>{item.description}</div>
           </div>
         ))}
       </section>
     </section>
   )
 }
+
+const announcements = [
+  {
+    id: 1,
+    month: 'Mar',
+    day: '16',
+    title: 'Spring Potluck Fellowship',
+    description:
+      'Join us after service for our monthly potluck. Bring your favorite dish to share and enjoy fellowship with church family.',
+    location: 'Fellowship Hall',
+    time: 'Immediately after service'
+  },
+  {
+    id: 2,
+    month: 'Mar',
+    day: ' 23',
+    title: 'Baptism Sunday',
+    description:
+      "If you're interested in being baptized or would like to learn more about what baptism means at Grace Church, please contact Pastor Michael.",
+    location: 'Main Sanctuary',
+    time: 'During 10:30am service'
+  },
+  {
+    id: 3,
+    month: 'Mar',
+    day: ' 30',
+    title: "Women's Breakfast Gathering",
+    description:
+      'All women are invited for a morning of prayer, encouragement, and connection. Light breakfast will be provided.',
+    location: 'Church Parlor',
+    time: '9:00am - 11:00am'
+  },
+  {
+    id: 4,
+    month: 'Apr',
+    day: ' 06',
+    title: 'Palm Sunday Procession',
+    description:
+      "Help us kick off Holy Week! We'll gather in the courtyard for palm branches and a procession into the sanctuary.",
+    location: 'Courtyard',
+    time: '10:15am'
+  }
+]

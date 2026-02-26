@@ -20,7 +20,7 @@ export default function Schedule() {
         end: '+=60%',
         pin: false,
         scrub: 3,
-        markers: true,
+        // markers: true,
         toggleActions: 'play reverse play reverse'
       }
     })
@@ -51,7 +51,7 @@ export default function Schedule() {
   return (
     <section
       ref={containerRef}
-      className='h-auto md:h-240 relative -z-1 flex-col px-6 md:px-30 flex mb-20 md:mb-30'
+      className='h-auto md:h-240 relative  -z-1 flex-col px-6 md:px-30 flex mb-20 md:mb-30'
     >
       <h2
         ref={box1}
@@ -68,9 +68,9 @@ export default function Schedule() {
               className='schedule-item border-l-4 md:border-l-7 rounded-xl hover:bg-[#f9ecea] cursor-pointer py-5 md:py-7 list-disc flex flex-col gap-4 md:gap-6 border-[#8f3337] pl-6 md:pl-10'
             >
               <li className='font-semibold text-base md:text-lg font-mono'>{item.header}</li>
-              <li className='text-xs md:text-sm font-semibold'>{item.time1}</li>
-              <li className='text-xs md:text-sm font-semibold'>{item.time2}</li>
-              <li className='text-xs md:text-sm font-semibold'>{item.time3}</li>
+              <li className='text-sm md:text-sm font-semibold'>{item.time1}</li>
+              <li className='text-sm md:text-sm font-semibold'>{item.time2}</li>
+              <li className='text-sm md:text-sm font-semibold'>{item.time3}</li>
             </ul>
           ))}
         </section>
@@ -84,8 +84,8 @@ export default function Schedule() {
           </div>
         </section>
       </section>
-      <div className='mt-10  h-40 w-full justify-center items-center flex'>
-        <Dots className={`h-full`} />
+      <div className='mt-10  h-40 w-full justify-center max-sm:justify-end items-center flex'>
+        <Dots className={`h-full max-sm:gap-x-0 max-sm:text-gray-500 max-sm:gap-y-0`}  />
       </div>
     </section>
   )

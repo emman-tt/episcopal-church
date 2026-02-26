@@ -1,18 +1,13 @@
 import cross3 from '../../assets/img/cross3.svg'
-
-export default function Epistle({ epistleRef }) {
+import { Dots } from '../../components/dots'
+export default function Epistle ({ epistleRef }) {
   return (
     <section
       ref={epistleRef}
       className='absolute inset-0 h-screen w-full p-6 md:p-30 px-6 md:px-60 flex flex-col gap-10 md:gap-30 pt-10 md:pt-20 bg-white'
     >
-      <div className='grid grid-cols-5 w-40 gap-10 gap-x-15 grid-rows-4'>
-        {dots.map((item, i) => (
-          <div
-            key={i}
-            className='inline-block bg-[#8e3635] rounded-full w-1 h-1'
-          ></div>
-        ))}
+      <div className='mt-10  h-40 w-full justify-center max-sm:justify-end items-center flex'>
+        <Dots className={`h-ful max-sm:gap-x-1 max-sm:gap-y-2`}  />
       </div>
       <div className='flex flex-col gap-8 p-16  relative items-center justify-center'>
         <div className='absolute left-0 top-0 w-1 h-15 bg-[#8e3635]'></div>
