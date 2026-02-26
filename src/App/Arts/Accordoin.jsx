@@ -7,6 +7,7 @@ export default function Accordion () {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const marquee = useRef(null)
   const description = useRef(null)
+  const isMobile = window.innerWidth <= 500
 
   useEffect(() => {
     gsap.set(container.current, {
@@ -80,7 +81,6 @@ export default function Accordion () {
         width: 'full'
       })
     } else {
- 
       gsap.to(marquee.current, {
         x: '-=50%',
         duration: 40,
@@ -110,7 +110,7 @@ export default function Accordion () {
         >
           <section
             ref={marquee}
-            className={`h-full relative gap-10 md:gap-5 flex ${
+            className={`h-full relative gap-3 md:gap-5 flex ${
               selected > 0 ? 'w-full justify-center' : 'min-w-max'
             }`}
           >
@@ -131,17 +131,20 @@ export default function Accordion () {
                 style={{
                   width:
                     selected === 0
-                      ? '280px'
+                      ? isMobile
+                        ? '150px'
+                        : '280px'
                       : selected === item.id
                       ? '100%'
                       : '0px',
-                  minWidth: selected === 0 ? '220px' : '0px',
+                  minWidth:
+                    selected === 0 ? (isMobile ? '100px' : '220px') : '0px',
                   display:
                     selected === 0 || selected === item.id ? 'block' : 'none'
                 }}
               >
                 <div
-                  className={`flex  items-center justify-center w-full z-20 text-xl md:text-3xl font-light  ease-in-out duration-0 text-white  bg-black/30 hover:bg-black/0    ${
+                  className={`flex  items-center justify-center w-full z-20 text-xl md:text-3xl font-light  ease-in-out duration-0 text-white sm:bg-black/30 hover:bg-black/0    ${
                     selected > 0
                       ? 'sm:bg-black/40 bg-black/10 md:bg-white/5 text-2xl md:text-4xl font-semibold p-6 md:p-10 sm:backdrop-blur-xs border-0 md:border-2 rounded-2xl max-sm:flex-col max-sm:gap-0  max-sm:p-2 md:border-white/30 sm:shadow-xl h-auto md:h-max w-[90%] md:w-max top-1/2 md:top-[60%] left-1/2 md:left-[20%] -translate-x-1/2 md:translate-x-0 -translate-y-1/200 md:translate-y-0'
                       : 'bg-linear-to-b from-transparent via-black/40 to-black/80'
@@ -159,7 +162,6 @@ export default function Accordion () {
                   )}
                 </div>
                 <img
-            
                   src={item.image}
                   className='w-full h-full object-cover rounded-4xl'
                   alt={`Art ${item.id}`}
