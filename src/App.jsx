@@ -17,9 +17,9 @@ function App () {
         <NavigationProvider>
           <Suspense
             fallback={
-              <section>
+           
                 <Loader />
-              </section>
+           
             }
           >
             <Routes>
