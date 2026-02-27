@@ -4,7 +4,7 @@ import x from '../../assets/img/icons/x.svg'
 import facebook from '../../assets/img/icons/facebook.svg'
 import github from '../../assets/img/icons/github.svg'
 import { NavLink } from 'react-router-dom'
-export default function Footer() {
+export default function Footer () {
   return (
     <section className='flex flex-col p-6 md:p-30 pb-10 min-h-max md:min-h-120 mt-20 md:mt-30 bg-black text-white'>
       <header className='flex flex-col md:flex-row w-full items-start md:items-center justify-between gap-10'>
@@ -22,9 +22,12 @@ export default function Footer() {
             life, there's a place for you here.
           </p>
         </div>
-        <button className='rounded-4xl cursor-pointer text-white font-semibold bg-[#8f3337] p-3 md:p-4 w-full md:w-auto text-sm'>
+        <NavLink
+          to={'/contact'}
+          className='rounded-4xl cursor-pointer text-white font-semibold bg-[#8f3337] p-3 md:p-4 w-full md:w-auto text-sm'
+        >
           DONATE NOW
-        </button>
+        </NavLink>
       </header>
 
       <main className='mt-12 md:mt-20'>
