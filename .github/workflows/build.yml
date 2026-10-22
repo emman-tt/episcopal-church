@@ -50,7 +50,7 @@ jobs:
           username: ${{ secrets.USER }}
           port: 22
           key: ${{ secrets.KEY }}
-          source: "$NGINX_FILE"
+          source: "episcopal-nginx.conf"
           target: "/home/ubuntu/deploy/"
 
       - name: SSH into vm and deploy
